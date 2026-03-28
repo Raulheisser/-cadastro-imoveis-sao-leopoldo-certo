@@ -1,297 +1,144 @@
-# Sistema de Cadastro de Imóveis - São Leopoldo
+Sistema de Cadastro de Imóveis - São Leopoldo
+📋 Sobre o projeto
 
-## 📋 Descrição
+Este sistema foi desenvolvido com o objetivo de gerenciar o cadastro de pessoas e imóveis da Prefeitura de São Leopoldo. A ideia foi criar algo simples de usar, mas completo o suficiente para atender às necessidades do desafio proposto pelo setor de desenvolvimento.
 
-Sistema de cadastro de imóveis e pessoas para a Prefeitura Municipal de São Leopoldo, desenvolvido conforme especificações do desafio de programação do Departamento de Desenvolvimento de Sistemas.
-
-## ✨ Funcionalidades Implementadas
-
-### Autenticação e Segurança
-- ✅ Sistema de autenticação com login seguro
-- ✅ Controle de acesso às funcionalidades
-- ✅ Validação de sessão de usuário
-- ✅ Logout com limpeza de cookies
-
-### Cadastro de Pessoas
-- ✅ Cadastro com validação rigorosa de CPF
-- ✅ Campos obrigatórios: nome, data de nascimento, CPF
-- ✅ Campos opcionais: sexo, telefone, e-mail
-- ✅ Edição de registros com validação
-- ✅ Exclusão com confirmação para evitar erros
-
-### Cadastro de Imóveis
-- ✅ Inscrição municipal auto-incrementada automaticamente
-- ✅ Campos obrigatórios: logradouro, número, bairro
-- ✅ Campo opcional: complemento (apto, sala, etc.)
-- ✅ Vínculo automático com proprietário/contribuinte
-- ✅ Edição incluindo alteração de proprietário
-- ✅ Exclusão com confirmação
-
-### Consultas e Filtros Avançados
-- ✅ Listagem de pessoas com paginação
-- ✅ Filtros por nome, CPF e outros campos
-- ✅ Listagem de imóveis com paginação
-- ✅ Filtros por inscrição municipal, logradouro, bairro, proprietário
-- ✅ Busca em tempo real
-
-### Interface e Experiência do Usuário
-- ✅ Interface responsiva (mobile, tablet, desktop)
-- ✅ Design moderno com Tailwind CSS
-- ✅ Componentes elegantes e intuitivos
-- ✅ Feedback visual com notificações (toast)
-- ✅ Confirmações para operações críticas
-- ✅ Loading states para melhor UX
-
-### Testes Automatizados
-- ✅ 12 testes automatizados
-- ✅ Testes de validação de dados
-- ✅ Testes de procedures tRPC
-- ✅ Testes de autenticação
-- ✅ 100% de cobertura das funcionalidades críticas
-
-## 🛠️ Tecnologias Utilizadas
-
-| Camada | Tecnologia | Versão |
-|--------|-----------|--------|
-| **Front-end** | React | 19.2 |
-| **Estilização** | Tailwind CSS | 4.1 |
-| **Back-end** | tRPC | 11.6 |
-| **Servidor** | Express | 4.21 |
-| **Banco de Dados** | MySQL | 8+ |
-| **ORM** | Drizzle | 0.44 |
-| **Autenticação** | Manus OAuth | - |
-| **Validação** | Zod | 4.1 |
-| **Testes** | Vitest | 2.1 |
-| **Build** | Vite | 7.1 |
-
-## 📦 Instalação e Configuração
-
-### Pré-requisitos
-- Node.js 22.0 ou superior
-- npm ou pnpm
-- MySQL 8.0 ou superior
-- Git
-
-### Passo 1: Clonar o Repositório
-
-```bash
+✨ O que o sistema faz
+🔐 Login e controle de acesso
+Login com autenticação
+Controle básico de acesso às páginas
+Sessão do usuário validada
+Logout com limpeza dos dados
+👤 Cadastro de pessoas
+Cadastro com validação de CPF
+Campos obrigatórios: nome, data de nascimento e CPF
+Campos opcionais: sexo, telefone e e-mail
+Possibilidade de editar dados
+Exclusão com confirmação (pra evitar apagar sem querer)
+🏠 Cadastro de imóveis
+Número de inscrição gerado automaticamente
+Campos obrigatórios: logradouro, número e bairro
+Campo opcional: complemento
+Cada imóvel fica vinculado a um proprietário
+Edição de dados, inclusive troca de proprietário
+Exclusão com confirmação
+🔎 Listagens e buscas
+Listagem de pessoas com paginação
+Filtro por nome, CPF e outros campos
+Listagem de imóveis também com paginação
+Filtros por inscrição, endereço, bairro e proprietário
+Busca em tempo real
+🎨 Interface
+Funciona bem em celular, tablet e computador
+Layout feito com Tailwind
+Interface simples e direta
+Notificações na tela (tipo alerta)
+Confirmações antes de ações importantes
+Indicadores de carregamento
+🧪 Testes
+Foram criados 12 testes automatizados
+Testes de validação, autenticação e regras principais
+Cobertura das partes mais importantes do sistema
+🛠️ Tecnologias usadas
+Front-end: React
+Estilização: Tailwind CSS
+Back-end: tRPC + Express
+Banco de dados: MySQL
+ORM: Drizzle
+Autenticação: OAuth (Manus)
+Validação: Zod
+Testes: Vitest
+Build: Vite
+📦 Como rodar o projeto
+Pré-requisitos
+Node.js 22+
+npm ou pnpm
+MySQL 8+
+Git
+1. Clonar o projeto
 git clone https://github.com/SEU_USUARIO/cadastro-imoveis-sao-leopoldo.git
 cd cadastro-imoveis-sao-leopoldo
-```
-
-### Passo 2: Instalar Dependências
-
-```bash
+2. Instalar as dependências
 pnpm install
-```
+3. Configurar o banco
 
-### Passo 3: Configurar Banco de Dados
+Você pode importar o backup com:
 
-Importe o backup do banco de dados:
-
-```bash
 mysql -u root -p < database_backup.sql
-```
 
-Ou manualmente:
-1. Abra seu cliente MySQL (MySQL Workbench, phpMyAdmin, etc.)
-2. Crie um novo banco de dados: `cadastro_imoveis`
-3. Importe o arquivo `database_backup.sql`
+Ou criar manualmente um banco chamado cadastro_imoveis e importar o arquivo.
 
-### Passo 4: Configurar Variáveis de Ambiente
-
-Crie um arquivo `.env.local` na raiz do projeto:
-
-```env
-# Banco de Dados
+4. Criar o .env.local
 DATABASE_URL=mysql://root:password@localhost:3306/cadastro_imoveis
 
-# Autenticação
-JWT_SECRET=sua_chave_secreta_aqui
+JWT_SECRET=sua_chave_secreta
 
-# OAuth (Manus)
 VITE_APP_ID=seu_app_id
 OAUTH_SERVER_URL=https://api.manus.im
 VITE_OAUTH_PORTAL_URL=https://portal.manus.im
 
-# Owner Info
 OWNER_NAME=Raul Heisser
 OWNER_OPEN_ID=seu_open_id
-```
-
-### Passo 5: Iniciar o Servidor de Desenvolvimento
-
-```bash
+5. Rodar o projeto
 pnpm dev
-```
 
-O servidor iniciará em: **http://localhost:3000**
+Acesse: http://localhost:3000
 
-## 🧪 Testes
-
-Execute os testes automatizados:
-
-```bash
+🧪 Rodando os testes
 pnpm test
-```
+📂 Organização do projeto
 
-Resultado esperado: **12 testes passando**
+O projeto está dividido em duas partes principais:
 
-## 📂 Estrutura do Projeto
+client/ → Front-end em React
+server/ → Back-end com tRPC e Express
+drizzle/ → Schema e migrations do banco
 
-```
-cadastro-imoveis-sao-leopoldo/
-│
-├── client/                          # Front-end React
-│   ├── src/
-│   │   ├── pages/
-│   │   │   ├── Home.tsx            # Dashboard principal
-│   │   │   ├── Pessoas.tsx         # Gerenciamento de pessoas
-│   │   │   └── Imoveis.tsx         # Gerenciamento de imóveis
-│   │   ├── components/
-│   │   │   ├── PessoaForm.tsx      # Formulário de pessoas
-│   │   │   ├── ImovelForm.tsx      # Formulário de imóveis
-│   │   │   └── DashboardLayout.tsx # Layout principal
-│   │   ├── lib/
-│   │   │   └── trpc.ts            # Cliente tRPC
-│   │   ├── App.tsx                # Roteamento
-│   │   └── index.css              # Estilos globais
-│   ├── public/                     # Arquivos estáticos
-│   └── index.html
-│
-├── server/                         # Back-end tRPC/Express
-│   ├── routers.ts                 # Procedures tRPC
-│   ├── db.ts                      # Queries do banco
-│   ├── pessoas.test.ts            # Testes de pessoas
-│   ├── imoveis.test.ts            # Testes de imóveis
-│   ├── auth.logout.test.ts        # Testes de auth
-│   └── _core/                     # Núcleo do servidor
-│       ├── index.ts               # Servidor Express
-│       ├── context.ts             # Contexto tRPC
-│       ├── trpc.ts                # Configuração tRPC
-│       ├── oauth.ts               # Autenticação OAuth
-│       └── env.ts                 # Variáveis de ambiente
-│
-├── drizzle/                        # Schema e Migrations
-│   ├── schema.ts                  # Definição das tabelas
-│   └── *.sql                      # Migrations
-│
-├── database_backup.sql            # Backup do banco de dados
-├── package.json                   # Dependências do projeto
-├── tsconfig.json                  # Configuração TypeScript
-├── vite.config.ts                 # Configuração Vite
-└── README.md                      # Este arquivo
-```
+Cada parte está separada pra facilitar manutenção e organização.
 
-## 📊 Schema do Banco de Dados
+📊 Banco de dados
 
-### Tabela: users
-```sql
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  openId VARCHAR(64) UNIQUE NOT NULL,
-  name TEXT,
-  email VARCHAR(320),
-  loginMethod VARCHAR(64),
-  role ENUM('user', 'admin') DEFAULT 'user',
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  lastSignedIn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+O sistema possui três tabelas principais:
 
-### Tabela: pessoas
-```sql
-CREATE TABLE pessoas (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(255) NOT NULL,
-  dataNascimento DATE NOT NULL,
-  cpf VARCHAR(14) UNIQUE NOT NULL,
-  sexo VARCHAR(1),
-  telefone VARCHAR(20),
-  email VARCHAR(255),
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-```
+users → usuários do sistema
+pessoas → cadastro de pessoas
+imoveis → cadastro de imóveis
 
-### Tabela: imoveis
-```sql
-CREATE TABLE imoveis (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  inscricaoMunicipal INT AUTO_INCREMENT UNIQUE,
-  logradouro VARCHAR(255) NOT NULL,
-  numero VARCHAR(20) NOT NULL,
-  bairro VARCHAR(255) NOT NULL,
-  complemento VARCHAR(255),
-  proprietarioId INT NOT NULL,
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (proprietarioId) REFERENCES pessoas(id)
-);
-```
+Os imóveis são vinculados a pessoas através de chave estrangeira.
 
-## 🚀 Build para Produção
-
-```bash
+🚀 Build para produção
 pnpm build
 pnpm start
-```
+🔗 API (resumo)
+Pessoas
+Listar
+Buscar por ID
+Criar
+Atualizar
+Deletar
+Imóveis
+Listar
+Buscar por ID
+Buscar por proprietário
+Criar
+Atualizar
+Deletar
+Autenticação
+Ver usuário logado
+Logout
+👤 Autor
 
-## 📝 Endpoints da API (tRPC)
+Raul Heisser
+raulheisser36@gmail.com
 
-### Pessoas
-- `pessoas.list()` - Listar todas as pessoas
-- `pessoas.get(id)` - Obter pessoa por ID
-- `pessoas.create(data)` - Criar nova pessoa
-- `pessoas.update(id, data)` - Atualizar pessoa
-- `pessoas.delete(id)` - Deletar pessoa
+📄 Observação
 
-### Imóveis
-- `imoveis.list()` - Listar todos os imóveis
-- `imoveis.get(id)` - Obter imóvel por ID
-- `imoveis.byProprietario(proprietarioId)` - Listar imóveis de um proprietário
-- `imoveis.create(data)` - Criar novo imóvel
-- `imoveis.update(id, data)` - Atualizar imóvel
-- `imoveis.delete(id)` - Deletar imóvel
+Projeto desenvolvido como parte de um desafio técnico.
 
-### Autenticação
-- `auth.me()` - Obter dados do usuário autenticado
-- `auth.logout()` - Fazer logout
-
-## 👤 Autor
-
-**Raul Heisser**
-- Email: raulheisser36@gmail.com
-- GitHub: [seu-usuario]
-
-## 📄 Licença
-
-Este projeto é propriedade da Prefeitura Municipal de São Leopoldo.
-
-## 📞 Suporte
-
-Para dúvidas ou sugestões sobre o sistema, entre em contato com:
-- Departamento de Desenvolvimento de Sistemas
-- Prefeitura Municipal de São Leopoldo
-
-## 🎯 Requisitos Atendidos
-
-Este projeto atende a todos os requisitos especificados no desafio de programação:
-
-- ✅ Tecnologia Web (React + tRPC)
-- ✅ Banco de Dados MySQL
-- ✅ Back-end com procedures tRPC
-- ✅ Dois tipos de cadastro (Pessoas e Imóveis)
-- ✅ Autenticação e controle de acesso
-- ✅ CRUD completo (Create, Read, Update, Delete)
-- ✅ Validações de dados
-- ✅ Interface responsiva e moderna
-- ✅ Testes automatizados
-- ✅ Código-fonte disponível no GitHub
-- ✅ Backup do banco de dados incluído
-
----
-
-**Data de Conclusão**: 22 de Março de 2026
-**Prazo de Entrega**: 29 de Março de 2026 (23h59)
+🎯 O que foi atendido
+CRUD completo
+Autenticação
+Validações
+Banco de dados integrado
+Interface responsiva
+Testes automatizados
